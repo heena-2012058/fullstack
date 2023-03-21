@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <style>
+
+ *{
+  color: black;
+ }   
+  </style>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body style="background-color: black;">
+<div id="lcol" class="">
+	<div id="doc" class=" p-3 bg-dark text-white  ">
+		<div class="p-2 text-warning" style="background-color: wheat;">
+			<h1 class="hi" style="color: black;font-size: 35px;text-align: center;">GPA Calculator</h1>
+			<form id="calcform" name="calcform" class="calc" autocomplete="off">
+			<table id="tbl">
+				<tr>
+					<td>Subject</td>
+					<td>Grade</td>
+					<td>Credits</td>
+				</tr>
+				<tbody>
+				</tbody>
+			</table>
+		
+		   <div class="form-group" style="padding-top: 25px;">
+		      <button type="button" id="calcbtn" title="Calculate" class="btn btn-primary"> Calculate</button>
+		      <button type="reset" id="resetbtn" title="Reset" class="btn btn-danger"> Reset</button>
+		      <button type="button" id="addrow" title="Add row" class="btn btn-warning"> Addrow</button>
+		   </div>
+		   <div class="form-group">
+		      <label for="gpa">GPA</label>
+		      <input type="text" id="gpa" readonly class="form-control">
+		   </div>
+		   <div class="form-group">
+		      <div id="gpacircle" class="red small mb-3"></div>
+		   </div>
+		   <div class="form-group">
+		      <label for="total">Total credits/hours</label>
+		      <input type="number" step="any" id="total" class="form-control" readonly>
+		   </div>
+			</form>
+	  </div>
+        
+      
+	</div>
+  <div id="doc" class=" p-3 bg-dark text-white  ">
+		<div class="p-2 text-warning" style="background-color: wheat;">
+			<h1 class="hello" style="color: black;font-size: 35px;text-align: center;">CGPA Calculator</h1>
+			<form id="calcform" name="calcform" class="calc1" autocomplete="off">
+			<table id="tbl1">
+				<tr>
+					<td>Semester</td>
+					<td>Grade</td>
+					<td>Credits_earned</td>
+				</tr>
+				<tbody>
+				</tbody>
+			</table>
+		
+		   <div class="form-group" style="padding-top: 25px;">
+		      <button type="button" id="calcbtn111" title="Calculate" class="btn btn-primary"> Calculate</button>
+		      <button type="reset" id="resetbtn1" title="Reset" class="btn btn-danger"> Reset</button>
+		      <button type="button" id="addrow1" title="Add row" class="btn btn-warning"> Addrow</button>
+		   </div>
+		   <div class="form-group">
+		      <label for="cgpa">CGPA</label>
+		      <input type="text" id="cgpa" readonly class="form-control">
+		   </div>
+		   <div class="form-group">
+		      <div id="gpacircle" class="red small mb-3"></div>
+		   </div>
+		   <div class="form-group">
+		      <label for="ctotal">Total credits/hours</label>
+		      <input type="number" step="any" id="ctotal" class="form-control" readonly>
+		   </div>
+			</form>
+	  </div>   
+	</div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+   var irow=0;
+   var irow1=0;
+   $( document ).ready(function() {
+      $("#calcbtn").click( Calc );
+      $("#resetbtn").click( OnReset );
+      $("#resetbtn1").click( OnReset1 );
+      $("#addrow").click( AddRow );
+      $("#addrow1").click( AddRoww );
+      $("#calcbtn111").click( Calc1 );
+         AddRow();
+         AddRoww();
+   });
+   function OnReset()
+   {
+      $("#gpacircle").hide();
+   }
+   function OnReset1()
+   {
+      $("#gpacircle").hide();
+   }
+   function Calc()
+   {
+      var glook=[-1,10.00, 9.00, 8.00, 7.00, 6.00, -1, -1];
+      var gpa=0;
+      var sum=0;
+      for(var i=1; i<=irow+1; i++)
+      {
+         hours = $("#tbl > tbody > tr:nth-child("+i+") > td:nth-child(3) > input").val();
+         hours = parseFloat(hours);
+         igrade = $("#tbl > tbody > tr:nth-child("+i+") > td:nth-child(2) > select").prop("selectedIndex");
+         grade = glook[igrade];
+         if( hours>0 && grade>=0 )
+         {
+            gpa+=hours*grade;
+            sum+=hours;
+         }
+      }
+      gpa/=sum;
+      gpa=gpa.toFixed(2);
+      $("#gpa").val(gpa);
+      $("#total").val(sum);
+     
+   }
+   function AddRow()
+   {
+      $('#tbl > tbody > tr').eq(irow++).after("<tr>\
+         <td><input type='text' name='class[]' class='form-control' placeholder='Subject "+irow+"'></td>\
+         <td><select name='grade[]' class='form-control'>\
+            <option selected>--</option>\
+            <option>O</option>\
+            <option>A+</option>\
+            <option>A</option>\
+            <option>B+</option>\
+            <option>B</option>\
+            <option>RA</option>\
+            <option>A</option>\
+         </select></td>\
+         <td><input type='number' min='0' step='any' name='hours[]' class='form-control'></td>\
+      </tr>");
+   }
+   function AddRoww()
+   {
+      $('#tbl1 > tbody > tr').eq(irow1++).after("<tr>\
+         <td><input type='text' name='class1[]' class='form-control' placeholder='Semester "+irow1+"'></td>\
+         <td><input type='number' min='0' step='any' name='grade1[]' class='form-control'></td>\
+         <td><input type='number' min='0' step='any' name='hours1[]' class='form-control'></td>\
+      </tr>");
+    }
+    function Calc1(){
+      var cgpa=0;
+      var csum=0;
+      for(var i=1; i<=irow1+1; i++)
+      {
+         hours1 = $("#tbl1 > tbody > tr:nth-child("+i+") > td:nth-child(3) > input").val();
+         hours1 = parseFloat(hours1);
+         grade1 = $("#tbl1 > tbody > tr:nth-child("+i+") > td:nth-child(2) > input").val();
+         grade1 = parseFloat(grade1);
+         //console.log(hours1);
+         if( hours1>=0 && grade1>=0 )
+         {
+            cgpa+=hours1*grade1;
+            csum+=hours1;
+         }
+    }
+         cgpa/=csum;
+         cgpa=cgpa.toFixed(2);
+      $("#cgpa").val(cgpa);
+      $("#ctotal").val(csum);
+
+ }  
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    <style>
+        .dc1
+        {
+            display: grid;
+            grid-template-areas: 
+            'head head head'
+            'main main main'
+            'event1 event1 event1'
+            'event2 event2 event2'
+            'test test test'
+            'footer footer footer';
+            padding: 20px;
+            border : 20px solid rgb(134, 87, 87);
+            background-image: url('./light.jpg');
+            background-size: 100%;
+            
+        }
+        .dc1 > div{
+            border:3px solid rgb(183, 68, 68);
+            padding: 10px;
+            margin: 10px;
+        }
+        #main > div{
+            border:3px solid rgb(168, 168, 2);
+            padding: 10px;
+            margin: 10px;
+        }
+        #event1 > div{
+            border:3px solid rgb(168, 168, 2);
+            padding: 10px;
+            margin: 10px;
+        }
+        #event2 > div{
+            border:3px solid rgb(168, 168, 2);
+            padding: 10px;
+            margin: 10px;
+        }
+         #head
+        {
+            grid-area: head;
+            background-color: rgb(174, 142, 142);
+            background-image: url('./download.jpg');
+            background-position: center;
+            background-size: 100%;
+           
+        }
+        #main
+        {
+            grid-area: main;
+            display:grid;
+            grid-template-areas: 
+            'ms1 ms1 ma1'
+            'ms2 ms2 ma1'
+            ;
+        }
+        .ms1{
+            grid-area: ms1;
+        }
+        .ms2{
+            grid-area: ms2;
+        }
+        .ma1{
+            grid-area: ma1;
+        }
+        #event1
+        {
+            grid-area: event1;
+            display:grid;
+            grid-template-areas: 
+            'ms1 ms1 ma1'
+            'ms2 ms2 ma1'
+            ;
+        }
+        .ms1{
+            grid-area: ms1;
+        }
+        .ms2{
+            grid-area: ms2;
+        }
+        .ma1{
+            grid-area: ma1;
+        }
+        
+        #event2
+        {
+            grid-area: event2;
+            display:grid;
+            grid-template-areas: 
+            'ms1 ms1 ma1'
+            'ms2 ms2 ma1'
+            ;
+        }
+        .ms1{
+            grid-area: ms1;
+        }
+        .ms2{
+            grid-area: ms2;
+        }
+        .ma1{
+            grid-area: ma1;
+        }
+        
+        #test
+        {
+            grid-area: test;
+        }
+        #footer
+        {
+            grid-area: footer;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="dc" class="dc1">
+        <div id="head">
+            <h1><span><img src="bo.jpg" width="250px" style="border:100px bold red;border-radius:50%"><center><b></b>
+            <h1 style="color:white;">Online Learning Portal
+
+            </h1></b></center></span></div>
+        <div id="main">
+            <div class="ms1">ms1</div>
+            <div class="ms2">ms2</div>
+            <div class="ma1">ma1</div>
+        </div>
+        <div id="event1">
+            <div class="ms1">ms1</div>
+            <div class="ms2">ms2</div>
+            <div class="ma1">ma1</div>
+        </div>
+        <div id="event2">
+            <div class="ms1">ms1</div>
+            <div class="ms2">ms2</div>
+            <div class="ma1">ma1</div>
+        </div>
+        <div id="test">a</div>
+        <div id="footer">heart</div>
+    </div>
+</body>
+</html>
